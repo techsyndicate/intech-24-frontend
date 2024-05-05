@@ -9,9 +9,7 @@
 		],
 		["3D Design", "2D Design", "UI Design", "A/V editing"],
 		["Group Discussion", "Crossword", "Gaming", "Photography"],
-		["Competitive Programming", "Film Making", "Hardware", "Cubing 2 by 2"],
-		["Cubing 3 by 3"],
-	];
+		["Competitive Programming", "Film Making", "Hardware", "Cubing"]	];
 
 	let selected = [];
 	let notyf = new Notyf();
