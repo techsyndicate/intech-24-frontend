@@ -61,3 +61,17 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+::-webkit-scrollbar {
+	width: 0.3vw;
+}
+
+::-webkit-scrollbar-track {
+	background-color: rgb(22, 22, 22);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #333;
+	border-radius: 10px;
+}

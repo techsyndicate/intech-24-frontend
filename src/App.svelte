@@ -1,5 +1,5 @@
 <script>
-	import { Notyf } from "../node_modules/notyf"
+	import { Notyf } from "../node_modules/notyf";
 	const events = [
 		[
 			"App Development",
@@ -13,121 +13,127 @@
 		["Cubing 3 by 3"],
 	];
 
-	
 	let selected = [];
-    let notyf = new Notyf();
-	
-    function removeSpace() {
-        var email = window.document.getElementById("email").value;
-        email = email.replace(/\s/g, '');
-        window.document.getElementById("email").value = email;
-    }
-	
-    function submit() {
-		console.log('hey')
-        var vehicle1 = document.getElementById("vehicle1").checked;
-        var name = window.document.getElementById("name").value;
-        var dob = window.document.getElementById("dob").value;
-        var email = window.document.getElementById("email").value.trim();
-        var phone = window.document.getElementById("phone").value;
-        var adno = window.document.getElementById("adno").value;
-        var classs = window.document.getElementById("class").value;
-        var section = window.document.getElementById("section").value;
-        if (!vehicle1) {
-            notyf.error("Please ask your parents to consent for Discord!");
-            return;
-        }
-        if (!(name && dob && email && phone && adno && classs && section)) {
-            notyf.error("Please fill all the fields");
-            return;
-        }
-        if (new Date(dob).getFullYear() < 2000 || new Date(dob).getFullYear() > 2015) {
-            notyf.error("Please enter a valid date of birth");
-            return;
-        }
-        if (phone.length != 10) {
-            notyf.error("Please enter a valid phone number");
-            return;
-        }
-        // email regex
-        var re =
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(email)) {
-            notyf.error("Please enter a valid email");
-            return;
-        }
-        if (adno.length < 4 || adno.length > 5) {
-            notyf.error("Please enter a valid admission number");
-            return;
-        }
-        if (classs < 1 || classs > 12) {
-            notyf.error("Please enter a valid class");
-            return;
-        }
-        window.document.getElementById("reg-container").style.display = "none";
-        window.document.getElementById("reg-container-2").style.display = "flex";
+	let notyf = new Notyf();
 
-    }
+	function removeSpace() {
+		var email = window.document.getElementById("email").value;
+		email = email.replace(/\s/g, "");
+		window.document.getElementById("email").value = email;
+	}
 
+	function submit() {
+		console.log("hey");
+		var vehicle1 = document.getElementById("vehicle1").checked;
+		var name = window.document.getElementById("name").value;
+		var dob = window.document.getElementById("dob").value;
+		var email = window.document.getElementById("email").value.trim();
+		var phone = window.document.getElementById("phone").value;
+		var adno = window.document.getElementById("adno").value;
+		var classs = window.document.getElementById("class").value;
+		var section = window.document.getElementById("section").value;
+		if (!vehicle1) {
+			notyf.error("Please ask your parents to consent for Discord!");
+			return;
+		}
+		if (!(name && dob && email && phone && adno && classs && section)) {
+			notyf.error("Please fill all the fields");
+			return;
+		}
+		if (
+			new Date(dob).getFullYear() < 2000 ||
+			new Date(dob).getFullYear() > 2015
+		) {
+			notyf.error("Please enter a valid date of birth");
+			return;
+		}
+		if (phone.length != 10) {
+			notyf.error("Please enter a valid phone number");
+			return;
+		}
+		// email regex
+		var re =
+			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (!re.test(email)) {
+			notyf.error("Please enter a valid email");
+			return;
+		}
+		if (adno.length < 4 || adno.length > 5) {
+			notyf.error("Please enter a valid admission number");
+			return;
+		}
+		if (classs < 1 || classs > 12) {
+			notyf.error("Please enter a valid class");
+			return;
+		}
+		window.document.getElementById("reg-container").style.display = "none";
+		window.document.getElementById("reg-container-2").style.display =
+			"flex";
+	}
 
-    function select(string) {
-        var x = document.getElementById(string);
-        if (x.style.color == "rgb(255, 255, 255)") {
-            x.style.border = "3px solid #16e16e";
-            x.style.color = "#16e16e";
-            selected.push(string);
-        } else {
-            x.style.color = "rgb(255, 255, 255)";
-            x.style.border = "3px solid #2C2A2A"
-            var index = selected.indexOf(string);
-            if (index > -1) {
-                selected.splice(index, 1);
-            }
-        }
-        console.log(selected)
-    }
+	function select(string) {
+		var x = document.getElementById(string);
+		if (x.style.color == "rgb(255, 255, 255)") {
+			x.style.border = "3px solid #16e16e";
+			x.style.color = "#16e16e";
+			selected.push(string);
+		} else {
+			x.style.color = "rgb(255, 255, 255)";
+			x.style.border = "3px solid #2C2A2A";
+			var index = selected.indexOf(string);
+			if (index > -1) {
+				selected.splice(index, 1);
+			}
+		}
+		console.log(selected);
+	}
 
-    async function register() {
-        var name = window.document.getElementById("name").value;
-        var dob = window.document.getElementById("dob").value;
-        var email = window.document.getElementById("email").value;
-        var phone = window.document.getElementById("phone").value;
-        var adno = window.document.getElementById("adno").value;
-        var classs = window.document.getElementById("class").value;
-        var section = window.document.getElementById("section").value;
-        if (selected.length == 0) {
-            notyf.error("Please select atleast one field");
-            return;
-        }
-        var body = JSON.stringify({
-            name: name,
-            dob: dob,
-            email: email,
-            phone: phone,
-            adno: adno,
-            grade: classs,
-            section: section,
-            selected: selected
-        });
-        window.document.getElementById('regis').disabled = true;
-        await fetch("https://intech-reg-24.onrender.com/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: body
-        }).then(async (response) => {
-            response = await response.json()
-            console.log(response)
-            if (response.hasOwnProperty("success") && response.success == false) {
-                notyf.error(response.msg);
-                window.document.getElementById('regis').disabled = false;
-                return;
-            }
-            window.document.getElementById("reg-container-2").style.display = "none";
-            window.document.getElementById("thank-you").style.display = "flex";
-        });
-    }
+	async function register() {
+		var name = window.document.getElementById("name").value;
+		var dob = window.document.getElementById("dob").value;
+		var email = window.document.getElementById("email").value;
+		var phone = window.document.getElementById("phone").value;
+		var adno = window.document.getElementById("adno").value;
+		var classs = window.document.getElementById("class").value;
+		var section = window.document.getElementById("section").value;
+		if (selected.length == 0) {
+			notyf.error("Please select atleast one field");
+			return;
+		}
+		var body = JSON.stringify({
+			name: name,
+			dob: dob,
+			email: email,
+			phone: phone,
+			adno: adno,
+			grade: classs,
+			section: section,
+			selected: selected,
+		});
+		window.document.getElementById("regis").disabled = true;
+		await fetch("https://intech-reg-24.onrender.com/register", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: body,
+		}).then(async (response) => {
+			response = await response.json();
+			console.log(response);
+			if (
+				response.hasOwnProperty("success") &&
+				response.success == false
+			) {
+				notyf.error(response.msg);
+				window.document.getElementById("regis").disabled = false;
+				return;
+			}
+			window.document.getElementById("reg-container-2").style.display =
+				"none";
+			window.document.getElementById("regMail").innerText = email;
+			window.document.getElementById("thank-you").style.display = "flex";
+		});
+	}
 </script>
 
 <main>
@@ -162,7 +168,7 @@
 						type="text"
 						id="email"
 						name="email"
-						on:input="{removeSpace}"
+						on:input={removeSpace}
 						placeholder="john.doe@ais.amity.edu"
 					/>
 				</div>
@@ -224,7 +230,7 @@
 			</div>
 		</div>
 		<div class="inpt-sub-div-1">
-			<button class="inpt-sub" on:click="{submit}">Continue</button>
+			<button class="inpt-sub" on:click={submit}>Continue</button>
 		</div>
 	</div>
 	<div id="reg-container-2" class="reg-container">
@@ -236,15 +242,15 @@
 						<button
 							style="color: rgb(255, 255, 255); border: #2C2A2A solid 3px;"
 							class="event-but"
-							on:click="{()=>select(eventEl)}"
-							id="{eventEl}">{eventEl}</button
+							on:click={() => select(eventEl)}
+							id={eventEl}>{eventEl}</button
 						>
 					{/each}
 				</div>
 			{/each}
 		</div>
 		<div class="inpt-sub-div">
-			<button id="regis" class="inpt-sub" on:click="{register}"
+			<button id="regis" class="inpt-sub" on:click={register}
 				>Submit</button
 			>
 		</div>
@@ -254,8 +260,9 @@
 		<div class="reg-form-2">
 			<p class="thank-you-p">
 				Your registration is complete. You have been emailed the details
-				to proceed further. <br>
-				Make sure to check spam mail
+				at <span id="regMail"></span>
+				to proceed further. <br />
+				(Make sure to check spam mail)
 			</p>
 		</div>
 	</div>
@@ -263,7 +270,6 @@
 
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 	:global(body) {
 		margin: 0;
 		padding: 0;
@@ -305,6 +311,9 @@
 	#thank-you {
 		display: none;
 	}
+	#regMail {
+		text-decoration: underline;
+	}
 
 	.thank-you-p {
 		font-size: 1.5rem;
@@ -325,7 +334,7 @@
 		font-family: "Outfit", sans-serif;
 	}
 
-	main {
+	:global(body) {
 		background-color: #000;
 		margin: 0;
 		font-family: "Outfit", sans-serif;
