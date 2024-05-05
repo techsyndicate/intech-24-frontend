@@ -33,12 +33,11 @@
         var adno = window.document.getElementById("adno").value;
         var classs = window.document.getElementById("class").value;
         var section = window.document.getElementById("section").value;
-        var disname = window.document.getElementById("disname").value;
         if (!vehicle1) {
             notyf.error("Please ask your parents to consent for Discord!");
             return;
         }
-        if (!(name && dob && email && phone && adno && classs && section && disname)) {
+        if (!(name && dob && email && phone && adno && classs && section)) {
             notyf.error("Please fill all the fields");
             return;
         }
@@ -96,7 +95,6 @@
         var adno = window.document.getElementById("adno").value;
         var classs = window.document.getElementById("class").value;
         var section = window.document.getElementById("section").value;
-        var disname = window.document.getElementById("disname").value;
         if (selected.length == 0) {
             notyf.error("Please select atleast one field");
             return;
@@ -109,7 +107,6 @@
             adno: adno,
             grade: classs,
             section: section,
-            disname: disname,
             selected: selected
         });
         window.document.getElementById('regis').disabled = true;
@@ -207,15 +204,6 @@
 						id="section"
 						name="section"
 						placeholder="A"
-					/>
-				</div>
-				<div class="reg-form-div">
-					<p for="disname">Display Name</p>
-					<input
-						type="text"
-						id="disname"
-						name="disname"
-						placeholder="johnnygames"
 					/>
 				</div>
 			</div>
