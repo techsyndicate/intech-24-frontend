@@ -65,8 +65,7 @@
 			return;
 		}
 		window.document.getElementById("reg-container").style.display = "none";
-		window.document.getElementById("reg-container-2").style.display =
-			"flex";
+		window.document.getElementById("thank-you").style.display ="flex";
 	}
 
 	function select(string) {
@@ -210,6 +209,15 @@
 						placeholder="A"
 					/>
 				</div>
+				<div class="reg-form-div">
+					<p for="parentemail">Parent Email</p>
+					<input
+						type="text"
+						id="parentemail"
+						name="parentemail"
+						placeholder="william.doe@gmail.com"
+					/>
+				</div>
 			</div>
 			<div class="reg-form-div-container-parent">
 				<input
@@ -225,10 +233,10 @@
 					I consent for my child if above 13 to join Discord Server of
 					inTech (filled by parent).
 				</label><br />
+				<div class="inpt-sub-div-1">
+					<button class="inpt-sub" on:click={submit}>Continue</button>
+				</div>
 			</div>
-		</div>
-		<div class="inpt-sub-div-1">
-			<button class="inpt-sub" on:click={submit}>Continue</button>
 		</div>
 	</div>
 	<div id="reg-container-2" class="reg-container">
@@ -254,13 +262,13 @@
 		</div>
 	</div>
 	<div id="thank-you" class="reg-container">
-		<h1 class="title">Thank You</h1>
+		<h1 class="title-thank title">Thank You !</h1>
 		<div class="reg-form-2">
 			<p class="thank-you-p">
 				Your registration is complete. You have been emailed the details
 				at <span id="regMail"></span>
 				to proceed further. <br />
-				(Make sure to check spam mail)
+				Make sure to check spam mail
 			</p>
 		</div>
 	</div>
@@ -274,9 +282,11 @@
 	}
 	.reg-form-div-container-parent {
 		display: flex;
-		justify-content: center;
+		justify-content: center !important;
 		align-items: center;
 		width: 100%;
+		gap: 10px;
+		margin-right: 155px;
 	}
 
 	.reg-form-div-container-parent input {
@@ -317,6 +327,7 @@
 		font-size: 1.5rem;
 		font-family: "Outfit", sans-serif;
 		color: #fff;
+		text-align: center;
 	}
 
 	.nav img {
@@ -331,7 +342,9 @@
 		font-weight: 600;
 		font-family: "Outfit", sans-serif;
 	}
-
+	.title-thank{
+		text-align: center;
+	}
 	:global(body) {
 		background-color: #000;
 		margin: 0;
@@ -339,9 +352,9 @@
 	}
 
 	.inpt-sub-div-1 {
-		width: 60vw;
-		display: flex;
-		justify-content: flex-end;
+		/* width: 60vw; */
+		/* display: flex; */
+		/* justify-content: flex-end; */
 	}
 
 	.inpt-sub-div {
