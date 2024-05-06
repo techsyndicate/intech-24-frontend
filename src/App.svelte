@@ -155,7 +155,7 @@
 				</div>
 				<div class="reg-form-div">
 					<p for="dob">Date Of Birth</p>
-					<input id="dob" type="date" name="dob" />
+					<input id="dob" type="date" name="dob" style="color:rgba(255,255,255,0.44)"/>
 				</div>
 			</div>
 			<div class="reg-form-div-container">
@@ -219,21 +219,23 @@
 					/>
 				</div>
 			</div>
-			<div class="reg-form-div-container-parent">
+			<div class="reg-form-div-container-parent" style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1vw">
 				<input
 					type="checkbox"
 					id="vehicle1"
 					name="vehicle1"
 					value="Bike"
+					class="age-consent"
 				/>
+				<span class="color-changer"></span>
 				<label
-					style="color: #16e16e; font-size: 1.3rem;"
+					style="color: #FFF; font-size: 1.3rem;"
 					for="vehicle1"
 				>
 					I consent for my child if above 13 to join Discord Server of
 					inTech (filled by parent).
 				</label><br />
-				<div class="inpt-sub-div-1">
+				<div class="inpt-sub-div-1" style="padding-left: 1vw;">
 					<button class="inpt-sub" on:click={submit}>Continue</button>
 				</div>
 			</div>
@@ -280,13 +282,13 @@
 		margin: 0;
 		padding: 0;
 	}
+	
 	.reg-form-div-container-parent {
-		display: flex;
-		justify-content: center !important;
+		/* display: flex; */
+		font-size: 1.3rem;
+		justify-content: center;
 		align-items: center;
 		width: 100%;
-		gap: 10px;
-		margin-right: 155px;
 	}
 
 	.reg-form-div-container-parent input {
@@ -352,9 +354,9 @@
 	}
 
 	.inpt-sub-div-1 {
-		/* width: 60vw; */
-		/* display: flex; */
-		/* justify-content: flex-end; */
+		/* width: 60vw;  */
+		display: flex; 
+		/* justify-content: flex-end;  */
 	}
 
 	.inpt-sub-div {
@@ -386,7 +388,7 @@
 
 	.reg-form p {
 		width: 40vw;
-		color: #16e16e;
+		color: #FFF;
 		font-size: 1.5rem;
 		font-family: "Outfit", sans-serif;
 	}
@@ -395,13 +397,14 @@
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 1vw;
+		margin-left: 2.9vw;
 		width: 40vw;
 	}
 
 	.reg-form-div-container {
 		display: flex;
 		width: 80vw;
-		justify-content: space-between;
+		/* justify-content: space-between; */
 		font-family: "Outfit", sans-serif;
 	}
 
@@ -419,8 +422,21 @@
 
 	input[type="date"]::-webkit-calendar-picker-indicator {
 		filter: invert(1);
+		color: #FFF;
 	}
 
+	input[type='checkbox']{
+		accent-color: #16e16e;
+		background-color: #000;
+	}
+	.color-changer{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 25px;
+		width: 25px;
+		background-color: #000;
+	}
 	.reg-container {
 		display: flex;
 		flex-direction: column;
