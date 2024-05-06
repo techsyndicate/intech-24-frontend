@@ -9,7 +9,8 @@
 		],
 		["3D Design", "2D Design", "UI Design", "A/V editing"],
 		["Group Discussion", "Crossword", "Gaming", "Photography"],
-		["Competitive Programming", "Film Making", "Hardware", "Cubing"]	];
+		["Competitive Programming", "Film Making", "Hardware", "Cubing"],
+	];
 
 	let selected = [];
 	let notyf = new Notyf();
@@ -26,6 +27,7 @@
 		var name = window.document.getElementById("name").value;
 		var dob = window.document.getElementById("dob").value;
 		var email = window.document.getElementById("email").value.trim();
+		var parentemail = window.document.getElementById("parentemail").value.trim();
 		var phone = window.document.getElementById("phone").value;
 		var adno = window.document.getElementById("adno").value;
 		var classs = window.document.getElementById("class").value;
@@ -51,8 +53,12 @@
 		}
 		// email regex
 		var re =
-			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (!re.test(email)) {
+			notyf.error("Please enter a valid email");
+			return;
+		}
+		if (!re.test(parentemail)) {
 			notyf.error("Please enter a valid email");
 			return;
 		}
@@ -65,9 +71,10 @@
 			return;
 		}
 		window.document.getElementById("reg-container").style.display = "none";
-		window.document.getElementById("reg-container-2").style.display ="flex";
+		window.document.getElementById("reg-container-2").style.display =
+		"flex";
 	}
-
+	
 	function select(string) {
 		var x = document.getElementById(string);
 		if (x.style.color == "rgb(255, 255, 255)") {
@@ -84,11 +91,12 @@
 		}
 		console.log(selected);
 	}
-
+	
 	async function register() {
 		var name = window.document.getElementById("name").value;
 		var dob = window.document.getElementById("dob").value;
 		var email = window.document.getElementById("email").value;
+		var parentemail = window.document.getElementById("parentemail").value.trim();
 		var phone = window.document.getElementById("phone").value;
 		var adno = window.document.getElementById("adno").value;
 		var classs = window.document.getElementById("class").value;
@@ -106,6 +114,8 @@
 			grade: classs,
 			section: section,
 			selected: selected,
+			parentemail: parentemail
+
 		});
 		window.document.getElementById("regis").disabled = true;
 		await fetch("https://intech-reg-24.onrender.com/register", {
@@ -155,85 +165,89 @@
 				</div>
 				<div class="reg-form-div">
 					<p for="dob">Date Of Birth</p>
-					<input id="dob" type="date" name="dob" style="color:rgba(255,255,255,0.44)"/>
+					<input
+					id="dob"
+					type="date"
+					name="dob"
+					style="color:rgba(255,255,255,0.44)"
+					/>
 				</div>
 			</div>
 			<div class="reg-form-div-container">
 				<div class="reg-form-div">
 					<p for="email">School Email</p>
 					<input
-						type="text"
-						id="email"
-						name="email"
-						on:input={removeSpace}
-						placeholder="john.doe@ais.amity.edu"
-					/>
-				</div>
-				<div class="reg-form-div">
-					<p for="phone">Phone Number</p>
-					<input
-						type="number"
-						id="phone"
-						name="phone"
-						placeholder="9889889889"
-					/>
-				</div>
-			</div>
-			<div class="reg-form-div-container">
-				<div class="reg-form-div">
-					<p for="adno">Admission Number</p>
-					<input
-						type="number"
-						id="adno"
-						name="adno"
-						placeholder="1111"
-					/>
-				</div>
-				<div class="reg-form-div">
-					<p for="class">Grade/Class</p>
-					<input
-						type="number"
-						id="class"
-						name="class"
-						placeholder="9"
-					/>
-				</div>
-			</div>
-			<div class="reg-form-div-container">
-				<div class="reg-form-div">
-					<p for="section">Section</p>
-					<input
-						type="text"
-						id="section"
-						name="section"
-						placeholder="A"
+					type="text"
+					id="email"
+					name="email"
+					on:input={removeSpace}
+					placeholder="john.doe@ais.amity.edu"
 					/>
 				</div>
 				<div class="reg-form-div">
 					<p for="parentemail">Parent Email</p>
 					<input
-						type="text"
-						id="parentemail"
-						name="parentemail"
-						placeholder="william.doe@gmail.com"
+					type="text"
+					id="parentemail"
+					name="parentemail"
+					placeholder="william.doe@gmail.com"
 					/>
 				</div>
 			</div>
-			<div class="reg-form-div-container-parent" style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1vw">
+			<div class="reg-form-div-container">
+				<div class="reg-form-div">
+				<p for="phone">Phone Number</p>
 				<input
-					type="checkbox"
-					id="vehicle1"
+				type="number"
+						id="phone"
+						name="phone"
+						placeholder="9889889889"
+					/>
+				</div>
+				<div class="reg-form-div">
+					<p for="adno">Admission Number</p>
+					<input
+					type="number"
+					id="adno"
+						name="adno"
+						placeholder="1111"
+					/>
+				</div>
+			</div>
+			<div class="reg-form-div-container">
+				<div class="reg-form-div">
+					<p for="class">Grade/Class</p>
+					<input
+					type="number"
+						id="class"
+						name="class"
+						placeholder="9"
+					/>
+				</div>
+				<div class="reg-form-div">
+				<p for="section">Section</p>
+					<input
+					type="text"
+					id="section"
+					name="section"
+					placeholder="A"
+					/>
+				</div>
+			</div>
+			<div
+			class="reg-form-div-container-parent"
+			style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1vw"
+			>
+			<input
+			type="checkbox"
+			id="vehicle1"
 					name="vehicle1"
 					value="Bike"
 					class="age-consent"
 				/>
 				<span class="color-changer"></span>
-				<label
-					style="color: #FFF; font-size: 1.3rem;"
-					for="vehicle1"
-				>
-					I consent for my child if above 13 to join Discord Server of
-					inTech (filled by parent).
+				<label style="color: #FFF; font-size: 1.3rem;" for="vehicle1">
+					I consent for my child if above 13 to join the discord server of inTech (filled by a parent).
 				</label><br />
 				<div class="inpt-sub-div-1" style="padding-left: 1vw;">
 					<button class="inpt-sub" on:click={submit}>Continue</button>
@@ -282,7 +296,7 @@
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	.reg-form-div-container-parent {
 		/* display: flex; */
 		font-size: 1.3rem;
@@ -344,7 +358,7 @@
 		font-weight: 600;
 		font-family: "Outfit", sans-serif;
 	}
-	.title-thank{
+	.title-thank {
 		text-align: center;
 	}
 	:global(body) {
@@ -355,7 +369,7 @@
 
 	.inpt-sub-div-1 {
 		/* width: 60vw;  */
-		display: flex; 
+		display: flex;
 		/* justify-content: flex-end;  */
 	}
 
@@ -388,7 +402,7 @@
 
 	.reg-form p {
 		width: 40vw;
-		color: #FFF;
+		color: #fff;
 		font-size: 1.5rem;
 		font-family: "Outfit", sans-serif;
 	}
@@ -422,19 +436,21 @@
 
 	input[type="date"]::-webkit-calendar-picker-indicator {
 		filter: invert(1);
-		color: #FFF;
+		color: #fff;
 	}
 
-	input[type='checkbox']{
+	input[type="checkbox"] {
+		/* appearance: none; */
 		accent-color: #16e16e;
 		background-color: #000;
+		margin-top: 0.5vw;
 	}
 	.color-changer{
 		position: absolute;
-		top: 0;
+		top: 20px;
 		left: 0;
-		height: 25px;
-		width: 25px;
+		height: 10px;
+		width: 10px;
 		background-color: #000;
 	}
 	.reg-container {
