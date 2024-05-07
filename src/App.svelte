@@ -27,7 +27,9 @@
 		var name = window.document.getElementById("name").value;
 		var dob = window.document.getElementById("dob").value;
 		var email = window.document.getElementById("email").value.trim();
-		var parentemail = window.document.getElementById("parentemail").value.trim();
+		var parentemail = window.document
+			.getElementById("parentemail")
+			.value.trim();
 		var phone = window.document.getElementById("phone").value;
 		var adno = window.document.getElementById("adno").value;
 		var classs = window.document.getElementById("class").value;
@@ -36,7 +38,18 @@
 			notyf.error("Please ask your parents to consent for Discord!");
 			return;
 		}
-		if (!(name && dob && email && phone && adno && classs && section)) {
+		if (
+			!(
+				name &&
+				dob &&
+				email &&
+				phone &&
+				adno &&
+				classs &&
+				section &&
+				parentemail
+			)
+		) {
 			notyf.error("Please fill all the fields");
 			return;
 		}
@@ -53,9 +66,13 @@
 		}
 		// email regex
 		var re =
-		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (!re.test(email)) {
 			notyf.error("Please enter a valid email");
+			return;
+		}
+		if (email.includes('@ais.amity.edu') == false) {
+			notyf.error("Please enter a valid school email");
 			return;
 		}
 		if (!re.test(parentemail)) {
@@ -66,17 +83,39 @@
 			notyf.error("Please enter a valid admission number");
 			return;
 		}
-		if (classs < 1 || classs > 12) {
+		if (classs < 7 || classs > 12) {
 			notyf.error("Please enter a valid class");
+			return;
+		}
+		var validSections = [
+			"a",
+			"b",
+			"c",
+			"d",
+			"e",
+			"f",
+			"g",
+			"h",
+			"i",
+			"j",
+			"s1",
+			"s2",
+			"sync",
+			"synconnect",
+			"synchro",
+		];
+		if (validSections.includes(section.toLowerCase()) == false) {
+			notyf.error("Please enter a valid section");
 			return;
 		}
 		window.document.getElementById("reg-container").style.display = "none";
 		window.document.getElementById("reg-container-2").style.display =
-		"flex";
+			"flex";
 	}
-	
+
 	function select(string) {
 		var x = document.getElementById(string);
+		x.style.transition = "all 500ms ease";
 		if (x.style.color == "rgb(255, 255, 255)") {
 			x.style.border = "3px solid #16e16e";
 			x.style.color = "#16e16e";
@@ -91,12 +130,14 @@
 		}
 		console.log(selected);
 	}
-	
+
 	async function register() {
 		var name = window.document.getElementById("name").value;
 		var dob = window.document.getElementById("dob").value;
 		var email = window.document.getElementById("email").value;
-		var parentemail = window.document.getElementById("parentemail").value.trim();
+		var parentemail = window.document
+			.getElementById("parentemail")
+			.value.trim();
 		var phone = window.document.getElementById("phone").value;
 		var adno = window.document.getElementById("adno").value;
 		var classs = window.document.getElementById("class").value;
@@ -114,8 +155,7 @@
 			grade: classs,
 			section: section,
 			selected: selected,
-			parentemail: parentemail
-
+			parentemail: parentemail,
 		});
 		window.document.getElementById("regis").disabled = true;
 		await fetch("https://intech-reg-24.onrender.com/register", {
@@ -166,10 +206,10 @@
 				<div class="reg-form-div">
 					<p for="dob">Date Of Birth</p>
 					<input
-					id="dob"
-					type="date"
-					name="dob"
-					style="color:rgba(255,255,255,0.44)"
+						id="dob"
+						type="date"
+						name="dob"
+						style="color:rgba(255,255,255,0.44)"
 					/>
 				</div>
 			</div>
@@ -177,28 +217,28 @@
 				<div class="reg-form-div">
 					<p for="email">School Email</p>
 					<input
-					type="text"
-					id="email"
-					name="email"
-					on:input={removeSpace}
-					placeholder="john.doe@ais.amity.edu"
+						type="text"
+						id="email"
+						name="email"
+						on:input={removeSpace}
+						placeholder="john.doe@ais.amity.edu"
 					/>
 				</div>
 				<div class="reg-form-div">
 					<p for="parentemail">Parent Email</p>
 					<input
-					type="text"
-					id="parentemail"
-					name="parentemail"
-					placeholder="william.doe@gmail.com"
+						type="text"
+						id="parentemail"
+						name="parentemail"
+						placeholder="william.doe@gmail.com"
 					/>
 				</div>
 			</div>
 			<div class="reg-form-div-container">
 				<div class="reg-form-div">
-				<p for="phone">Phone Number</p>
-				<input
-				type="number"
+					<p for="phone">Phone Number</p>
+					<input
+						type="number"
 						id="phone"
 						name="phone"
 						placeholder="9889889889"
@@ -207,8 +247,8 @@
 				<div class="reg-form-div">
 					<p for="adno">Admission Number</p>
 					<input
-					type="number"
-					id="adno"
+						type="number"
+						id="adno"
 						name="adno"
 						placeholder="1111"
 					/>
@@ -218,37 +258,41 @@
 				<div class="reg-form-div">
 					<p for="class">Grade/Class</p>
 					<input
-					type="number"
+						type="number"
 						id="class"
 						name="class"
-						placeholder="9"
+						placeholder="7-12"
+						min="7"
+						max="12"
 					/>
 				</div>
 				<div class="reg-form-div">
-				<p for="section">Section</p>
+					<p for="section">Section</p>
 					<input
-					type="text"
-					id="section"
-					name="section"
-					placeholder="A"
+						type="text"
+						id="section"
+						name="section"
+						placeholder="A-J/Sync/S1/S2"
 					/>
 				</div>
 			</div>
-			<div
-			class="reg-form-div-container-parent"
-			style="display:flex; flex-direction:row; justify-content:center; align-items:center; gap:1vw"
-			>
-			<input
-			type="checkbox"
-			id="vehicle1"
+			<div class="reg-form-div-container-parent">
+				<div id="parent">
+
+					<input
+					type="checkbox"
+					id="vehicle1"
 					name="vehicle1"
 					value="Bike"
 					class="age-consent"
-				/>
-				<span class="color-changer"></span>
-				<label style="color: #FFF; font-size: 1.3rem;" for="vehicle1">
-					I consent for my child if above 13 to join the discord server of inTech (filled by a parent).
-				</label><br />
+					/>
+					<span class="color-changer"></span>
+					<label style="color: #FFF; font-size: 1rem;" for="vehicle1">
+						I consent for my child if above 13 to join the discord
+						server of inTech (filled by a parent).
+					</label>
+				</div>
+				<br />
 				<div class="inpt-sub-div-1" style="padding-left: 1vw;">
 					<button class="inpt-sub" on:click={submit}>Continue</button>
 				</div>
@@ -296,22 +340,38 @@
 		margin: 0;
 		padding: 0;
 	}
+	
+	.reg-form input:focus {
+		transition: all 500ms;
+		transition-timing-function: ease-in-out;
+		border: 2px solid white;
+		outline: none;
+	}
 
 	.reg-form-div-container-parent {
 		/* display: flex; */
-		font-size: 1.3rem;
-		justify-content: center;
+		font-size: 1rem;
+		width: 90%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 		align-items: center;
-		width: 100%;
+		gap: 1vw;
 	}
 
 	.reg-form-div-container-parent input {
 		width: 20px !important;
 		color: #16e16e;
 	}
+	#parent {
+		display: flex;
+		align-items: center;
+		gap: 1vw;
+		margin-left: -1vw;
+	}
 
 	.event-but {
-		background-color: black;
+		background-color: #0d0c0c;
 		padding: 15px 32px;
 		text-align: center;
 		text-decoration: none;
@@ -327,11 +387,11 @@
 	#reg-container {
 		margin-bottom: 50px;
 	}
-
+	
 	#reg-container-2 {
 		display: none;
 	}
-
+	
 	#thank-you {
 		display: none;
 	}
@@ -347,8 +407,9 @@
 	}
 
 	.nav img {
-		width: 70px;
-		margin: 10px;
+		width: 4vw;
+		margin-top: 2.5vw;
+		margin-left: 2.5vw;
 	}
 
 	.title {
@@ -357,12 +418,13 @@
 		font-size: 4rem;
 		font-weight: 600;
 		font-family: "Outfit", sans-serif;
+		margin-top: 0;
 	}
 	.title-thank {
 		text-align: center;
 	}
 	:global(body) {
-		background-color: #000;
+		background-color: #0d0c0c;
 		margin: 0;
 		font-family: "Outfit", sans-serif;
 	}
@@ -427,7 +489,7 @@
 		width: 30vw;
 		border-radius: 7px;
 		padding: 1.3vw;
-		background-color: #000;
+		background-color: #0d0c0c;
 		border: #2c2a2a solid 2px;
 		font-size: 1rem;
 		color: #fff;
@@ -445,7 +507,7 @@
 		background-color: #000;
 		margin-top: 0.5vw;
 	}
-	.color-changer{
+	.color-changer {
 		position: absolute;
 		top: 20px;
 		left: 0;
@@ -462,20 +524,27 @@
 
 	@media screen and (max-width: 1020px) {
 		.event-but {
-			width: 80vw;
+			width: 70vw;
+			margin: 1vw auto;
+			font-size: 1.5rem;
+		}
+
+		#reg-container-2 .title {
 			font-size: 3rem;
 		}
 
-		.title {
-			font-size: 8rem;
+		h1 {
+			width: 85vw;
+			font-size: 20vw;
 		}
 
 		.nav img {
-			width: 100px;
+			width: 17vw;
+			margin: 10vw;
 		}
 
 		.reg-form p {
-			font-size: 3rem;
+			font-size: 2rem;
 			margin: 0;
 			margin-bottom: 5px;
 			width: 90vw;
@@ -487,20 +556,24 @@
 
 		.reg-form input {
 			width: 80vw;
-			height: 120px;
-			font-size: 3rem;
+			height: 15vw;
+			font-size: 2rem;
 		}
 
 		.inpt-sub {
-			width: 80vw !important;
-			height: 100px;
-			font-size: 3rem;
+			width: 40vw !important;
+			height: 15vw;
+			font-size: 2rem;
 		}
 
 		.inpt-sub-div,
 		.inpt-sub-div-1 {
 			width: 80vw;
 			margin-bottom: 50px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.reg-form-div {
@@ -508,22 +581,38 @@
 		}
 
 		.thank-you-p {
-			font-size: 3rem;
+			font-size: 2rem;
 			text-align: center;
-		}
-
-		.reg-form-div-container-parent input {
-			width: 100px !important;
-		}
-
-		.reg-form-div-container-parent label {
-			font-size: 2.3rem !important;
-			margin-left: 35px;
+			width: 80vw;
 		}
 
 		.reg-form-div-container-parent {
-			width: 80vw;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.reg-form-div-container-parent input {
+			width: 50px !important;
+			float: left;
+			margin-bottom: 1vw;
+		}
+
+		.reg-form-div-container-parent label {
+			font-size: 1.2rem !important;
+			margin-left: 10px;
+			text-align: left;
+		}
+
+		.reg-form-div-container-parent {
+			width: 85vw;
 			margin-bottom: 50px;
+		}
+
+		#parent {
+			align-items: center;
+			display: flex;
+			margin: 0;
+			justify-content: center;
 		}
 	}
 </style>
