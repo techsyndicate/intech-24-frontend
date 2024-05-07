@@ -328,7 +328,7 @@
 				Your registration is complete. You have been emailed the details
 				at <span id="regMail"></span>
 				to proceed further. <br />
-				Make sure to check spam mail
+				Make sure to check your spam mail
 			</p>
 		</div>
 	</div>
