@@ -194,13 +194,14 @@
 		<h1 class="title">Register</h1>
 		<div class="reg-form">
 			<div class="reg-form-div-container">
-				<div class="reg-form-div">
+				<div class="reg-form-div ">
 					<p for="name">Name</p>
 					<input
 						id="name"
 						type="text"
 						name="name"
 						placeholder="John Doe"
+						style="font-size:1.25rem;"
 					/>
 				</div>
 				<div class="reg-form-div">
@@ -209,7 +210,7 @@
 						id="dob"
 						type="date"
 						name="dob"
-						style="color:rgba(255,255,255,0.44)"
+						style="color:rgba(255,255,255,0.44); font-size: 1.25rem;"
 					/>
 				</div>
 			</div>
@@ -222,6 +223,7 @@
 						name="email"
 						on:input={removeSpace}
 						placeholder="john.doe@ais.amity.edu"
+						style="font-size: 1.25rem;"
 					/>
 				</div>
 				<div class="reg-form-div">
@@ -231,6 +233,7 @@
 						id="parentemail"
 						name="parentemail"
 						placeholder="william.doe@gmail.com"
+						style="font-size: 1.25rem;"
 					/>
 				</div>
 			</div>
@@ -242,6 +245,7 @@
 						id="phone"
 						name="phone"
 						placeholder="9889889889"
+						style="font-size: 1.25rem;"
 					/>
 				</div>
 				<div class="reg-form-div">
@@ -251,6 +255,7 @@
 						id="adno"
 						name="adno"
 						placeholder="1111"
+						style="font-size: 1.25rem;"
 					/>
 				</div>
 			</div>
@@ -264,6 +269,7 @@
 						placeholder="7-12"
 						min="7"
 						max="12"
+						style="font-size: 1.25rem;"
 					/>
 				</div>
 				<div class="reg-form-div">
@@ -272,7 +278,8 @@
 						type="text"
 						id="section"
 						name="section"
-						placeholder="A-J/Sync/S1/S2"
+						placeholder="A"
+						style="font-size: 1.25rem;"
 					/>
 				</div>
 			</div>
@@ -360,7 +367,7 @@
 	}
 
 	.reg-form-div-container-parent input {
-		width: 20px !important;
+		width: 2vw !important;
 		color: #16e16e;
 	}
 	#parent {
@@ -555,7 +562,7 @@
 		}
 
 		.reg-form input {
-			width: 80vw;
+			width: 75vw;
 			height: 15vw;
 			font-size: 2rem;
 		}
