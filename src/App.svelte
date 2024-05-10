@@ -109,8 +109,7 @@
 			return;
 		}
 		window.document.getElementById("reg-container").style.display = "none";
-		window.document.getElementById("reg-container-2").style.display =
-			"flex";
+		window.document.getElementById("thank-you").style.display ="flex";
 	}
 
 	function select(string) {
@@ -329,7 +328,7 @@
 		</div>
 	</div>
 	<div id="thank-you" class="reg-container">
-		<h1 class="title-thank title">Thank You !</h1>
+		<h1 class="title-thank title">Thank You</h1>
 		<div class="reg-form-2">
 			<p class="thank-you-p">
 				Your registration is complete. You have been emailed the details
@@ -564,12 +563,14 @@
 		}
 
 		.reg-form-div-container {
-			width: 110%;
+			width: 101%;
 			flex-direction: column;
+			display: flex;
+			justify-content: center;
 		}
 
 		.reg-form input {
-			width: 75vw;
+			width: 80vw;
 			height: 15vw;
 			font-size: 2rem;
 		}
