@@ -530,8 +530,14 @@
 	}
 
 	@media screen and (max-width: 1020px) {
+		.reg-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}	
 		.event-but {
-			width: 70vw;
+			width: 80vw;
 			margin: 1vw auto;
 			font-size: 1.5rem;
 		}
@@ -558,6 +564,7 @@
 		}
 
 		.reg-form-div-container {
+			width: 110%;
 			flex-direction: column;
 		}
 
