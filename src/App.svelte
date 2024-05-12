@@ -507,8 +507,9 @@
 		color: #fff;
 	}
 
-	input[type="checkbox"] {
+	input[type=checkbox] {
 		/* appearance: none; */
+		transform: scale(0.9);
 		accent-color: #16e16e;
 		background-color: #000;
 		margin-top: 0.5vw;
