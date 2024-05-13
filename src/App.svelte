@@ -109,7 +109,7 @@
 			return;
 		}
 		window.document.getElementById("reg-container").style.display = "none";
-		window.document.getElementById("thank-you").style.display ="flex";
+		window.document.getElementById("reg-container-2").style.display ="flex";
 	}
 
 	function select(string) {
